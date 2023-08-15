@@ -33,8 +33,9 @@ class JokesInCategoryTableViewController: UITableViewController {
         do {
             let realm = try Realm()
             let objects = realm.objects(JokeRealm.self)
-            guard let jokeRealms = Array(objects.filter("categories CONTAINS %@", category)) as? [JokeRealm] else { return }
-            jokes = jokeRealms
+            jokes = objects.filter({ $0.categories.contains(where: {$0 == category})})
+//            guard let jokeRealms = Array(objects.filter("categories CONTAINS %@", category)) as? [JokeRealm] else { return }
+//            jokes = jokeRealms
         }
         catch {
             print("error")

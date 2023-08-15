@@ -60,6 +60,7 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             refrashButton.isEnabled = true
             DispatchQueue.main.async {
+                self.refrashButton.isEnabled = true
                 switch result {
                 case .success(let joke):
                     self.lable.text = joke.value
